@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-package randmst;
-
-
 /**
  *
  * @author boreas
@@ -38,7 +35,7 @@ public class RandMst {
         
         return vlist;
     }
-    public static void prim(Graph g){
+    public static void prim(List<Vertex>){
         
     }
     
