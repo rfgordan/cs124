@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-/** 
+/**
  * GenGraph.java
  *
  * Interface for a structure a graph of edges and vertices.
@@ -12,11 +10,11 @@ public interface GenGraph {
     /**
      * Instance variable containing list of vertices
      */
-    public ArrayList[Vertex] vertices;
-    
+    public ArrayList<Vertex> vertices;
+
     /**
-     * Instance variable containing list of edges
+     * Find weight (distance) of an edge between vertices A and B
      */
-    public ArrayList[Edge] edges;
-    
+    public double getWeight(Vertex a, Vertex b);
+
 }
