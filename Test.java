@@ -34,8 +34,17 @@ public class Test {
         vertices.add(v1);
         vertices.add(v2);
         
-        Heap H = new Heap(new Vertex([4]));
-
+        /*
+        //test heap
+        Heap H = new BinHeap<Vertex>();
+        H.insert(v1,10);
+        H.insert(v2,20);
+        if(H.deletemin() != v1){
+            ps.printf("Oops! \n");
+        }
+        ps.printf("Coordinate: %d", H.deletemin().components.get(0).intValue());
+        */
+                
         Graph g1 = new Graph(vertices);
 
         double weight = g1.getWeight(g1.vertices.get(0), g1.vertices.get(1));
