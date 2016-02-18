@@ -33,6 +33,8 @@ public class Test {
         vertices = new ArrayList<Vertex>(2);
         vertices.add(v1);
         vertices.add(v2);
+        
+        Heap H = new Heap(new Vertex([4]));
 
         Graph g1 = new Graph(vertices);
 
