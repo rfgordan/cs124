@@ -34,16 +34,22 @@ public class Test {
         vertices.add(v1);
         vertices.add(v2);
 
+        /* REMOVE COMMENT TO ENABLE GRAPH GENERATOR TEST
         CompleteGraph g1;
         g1 = CompleteGraph.makeGraph(15, 3);
         g1.printGraph();
-        //double weight =
-
-
-
-        //ps.printf("Weight obtained: %f\n", weight);
-//        ps.printf("First element: %d\n", v1.components.get(0).intValue());
-//        ps.printf("Second element: %d\n", v2.components.get(1).intValue());
+        */
+        
+        /*
+        //test heap
+        Heap H = new BinHeap<Vertex>();
+        H.insert(v1,10);
+        H.insert(v2,20);
+        if(H.deletemin() != v1){
+            ps.printf("Oops! \n");
+        }
+        ps.printf("Coordinate: %d", H.deletemin().components.get(0).intValue());
+        */
 
     }
 
