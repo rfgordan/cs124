@@ -9,18 +9,18 @@ import java.util.Collections;
  *
  */
 
-public class Vertex implements GenVertex {
+public class NVertex implements Vertex {
 
     /**
      * Immutable components of the vertex
      */
-    public List<Integer> components;
+    public List<Double> components;
 
     /**
      * Costructs a Vertex from a list of component values. Note that
      * the resulting list is immutable.
      */
-    public Vertex(List<Integer> components) {
+    public NVertex(List<Double> components) {
         // List must contain a positive amount of numbers
         if (components == null) {
             throw new NullPointerException();
@@ -28,6 +28,6 @@ public class Vertex implements GenVertex {
             throw new IllegalArgumentException();
         }
         this.components = Collections.unmodifiableList(
-            new ArrayList<Integer>(components));
+            new ArrayList<Double>(components));
     }
 }

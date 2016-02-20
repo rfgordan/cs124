@@ -18,26 +18,30 @@ public class Test {
          * Graph distance() method test
          */
         ps.printf("Testing distance\n");
-        ArrayList<Integer> listA;
-        listA = new ArrayList<Integer>(2);
-        listA.add(0);
-        listA.add(2);
-        ArrayList<Integer> listB;
-        listB = new ArrayList<Integer>(2);
-        listB.add(-2);
-        listB.add(0);
-        Vertex v1 = new Vertex(listA);
-        Vertex v2 = new Vertex(listB);
+        ArrayList<Double> listA;
+        listA = new ArrayList<Double>(2);
+        listA.add(0.0);
+        listA.add(2.0);
+        ArrayList<Double> listB;
+        listB = new ArrayList<Double>(2);
+        listB.add(-2.0);
+        listB.add(0.0);
+        Vertex v1 = new NVertex(listA);
+        Vertex v2 = new NVertex(listB);
 
         ArrayList<Vertex> vertices;
         vertices = new ArrayList<Vertex>(2);
         vertices.add(v1);
         vertices.add(v2);
 
-        Graph g1 = new Graph(vertices);
+        CompleteGraph g1;
+        g1 = CompleteGraph.makeGraph(15, 3);
+        g1.printGraph();
+        //double weight =
 
-        double weight = g1.getWeight(g1.vertices.get(0), g1.vertices.get(1));
-        ps.printf("Weight obtained: %f\n", weight);
+
+
+        //ps.printf("Weight obtained: %f\n", weight);
 //        ps.printf("First element: %d\n", v1.components.get(0).intValue());
 //        ps.printf("Second element: %d\n", v2.components.get(1).intValue());
 

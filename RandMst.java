@@ -29,7 +29,7 @@ public class RandMst {
             for(int j = 0; j < dim; j++){
                 coords.add(vertexGenerator.nextDouble());
             }
-            Vertex newVertex = new Vertex(coords);
+            Vertex newVertex = new NVertex(coords);
             vlist.add(newVertex);
         }
         
