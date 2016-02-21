@@ -17,6 +17,7 @@ public class Test {
         /*
          * Graph distance() method test
          */
+        /* EUCLIDEAN DISTANCE TESTER
         ps.printf("Testing distance\n");
         ArrayList<Double> listA;
         listA = new ArrayList<Double>(2);
@@ -33,12 +34,15 @@ public class Test {
         vertices = new ArrayList<NVertex>(2);
         vertices.add(v1);
         vertices.add(v2);
+        */
 
        /* REMOVE COMMENT TO ENABLE GRAPH GENERATOR TEST
         CompleteGraph g1;
         g1 = CompleteGraph.makeGraph(15, 3);
         g1.printGraph();
         */
+
+
         
         
         //test heap

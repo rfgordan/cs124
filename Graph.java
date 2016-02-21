@@ -10,6 +10,6 @@ public interface Graph {
     /**
      * Find weight (distance) of an edge between vertices A and B
      */
-    public static double getWeight(Vertex a, Vertex b);
+   // public static double getWeight(Vertex a, Vertex b);
 
 }

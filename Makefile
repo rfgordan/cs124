@@ -14,7 +14,7 @@ JFLAGS = -Xlint -g
 # typing 'make' will invoke the first target entry in the makefile
 # (the default one in this case)
 #
-default: Test.class
+default: Test.class RandMst.class
 
 # this target entry builds the Average class
 # the Average.class file is dependent on the Average.java file
@@ -22,6 +22,9 @@ default: Test.class
 #
 Test.class: Test.java
 	$(JCC) $(JFLAGS) Test.java
+
+RandMst.class: RandMst.java
+	$(JCC) $(JFLAGS) RandMst.java
 
 # To start over from scratch, type 'make clean'.
 # Removes all .class files, so that the next make rebuilds them
