@@ -26,7 +26,7 @@ public class CompleteGraph implements Graph {
      * Find weight (distance) of an edge between vertices A and B
      */
     @Override
-    public double getWeight(Vertex a, Vertex b) {
+    public static double getWeight(Vertex a, Vertex b) {
         NVertex va = (NVertex) a;
         NVertex vb = (NVertex) b;
         // get dimensions

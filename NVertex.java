@@ -17,6 +17,9 @@ public class NVertex implements Vertex {
     /* Indicates current weight relative to source */
     private double relativeWeight;
 
+    /* Points to the MST parent vertex */
+    public NVertex parent;
+
     /**
      * Costructs a Vertex from a list of component values. Note that
      * the resulting list is immutable.
@@ -30,6 +33,9 @@ public class NVertex implements Vertex {
         }
         this.components = Collections.unmodifiableList(
             new ArrayList<Double>(components));
+        this.parent = null;
+        // relative weight value over max of 1
+        this.relativeWeight = 2.0;
     }
 
     /**
@@ -44,5 +50,19 @@ public class NVertex implements Vertex {
      */
     public void setRelativeWeight(double weight) {
         this.relativeWeight = weight;
+    }
+
+    /**
+     * Getter method for mst parent
+     */
+    public NVertex getRelativeWeight() {
+        return this.parent;
+    }
+
+    /**
+     * Setter method for mst parent
+     */
+    public void setRelativeWeight(NVertex parent) {
+        this.parent = parent;
     }
 }

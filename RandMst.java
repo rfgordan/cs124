@@ -16,7 +16,7 @@ public class RandMst {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-
+`   `
     /**
      * Prim's algorithm
      * @param graph - graph to be processed
@@ -42,36 +42,29 @@ public class RandMst {
         s.setRelativeWeight(0.0);
         heap.add(s);
 
-        // initialize weight and prev arrays
-        for (int i = 0, size = setV.size(); i < size; i++) {
-            // setting weight to a value larger than the max edge weight
-            weight.set(i, 2);
-            prev.set(i, null);
-        }
-        weight.set(initial) = 0.0;
-
         while (heap.size() > 0) {
             // get head of heap
-            NVertex v = new NVertex(heap.poll().components);
+            NVertex v = heap.poll();
             finalV.add(v);
-            // TODO: This can be made more efficient
+            // TODO: could this be more efficient?
             // iterate through every vortex in disjoint set V - S
             Iterator<NVertex> iter = heap.iterator();
             while (iter.hasNext()) {
-                NVertex current = new NVertex(iter.next().components);
-                // Not quite how this comparison works
-                if (current != v) {
-                    continue;
-                }
-                // temp variable missIndex
-                if (weight.get(missIndex) > ComplegeGraph.getWeight(v, current)) {
-                    weight.set(missIndex) = ComplegeGraph.getWeight(v, current);
-                    prev.set(missIndex) = v;
-                    v.setRelativeWeight(weight.get(missIndex));
-                    heap.add(v);
+                NVertex current = iter.next().components;
+
+                // check if new weight from mst to current vertex is smaller
+                if (CompleteGraph.getWeight(v, current) < current.getRelativeWeight()) {
+                    // TODO: update values
                 }
             }
         }
     }
 }
-
+v := deletemin(h)
+        S := S∪ {v}
+        for (v,w) ∈ E and w ∈ V −S do
+        if dist[w] > length(v,w)
+        dist[w] := length(v,w), prev[w] := v, insert(w,dist[w],H)
+        fi
+        rof
+        end while end
