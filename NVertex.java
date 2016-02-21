@@ -55,14 +55,14 @@ public class NVertex implements Vertex {
     /**
      * Getter method for mst parent
      */
-    public NVertex getRelativeWeight() {
+    public NVertex getParent() {
         return this.parent;
     }
 
     /**
      * Setter method for mst parent
      */
-    public void setRelativeWeight(NVertex parent) {
+    public void setParent(NVertex parent) {
         this.parent = parent;
     }
 }

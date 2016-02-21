@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.PriorityQueue;
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  *
@@ -14,12 +15,13 @@ public class RandMst {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
-`   `
+
     /**
      * Prim's algorithm
-     * @param graph - graph to be processed
+     *
+     * @param graph   - graph to be processed
      * @param initial - index referring to initial vertex in graph vertices
      */
     public static void prim(CompleteGraph graph, int initial) {
@@ -29,42 +31,40 @@ public class RandMst {
         // get reference to starting vertex
         NVertex s = setV.get(initial);
 
-        // dist and prev arrays
-        ArrayList<Double> weight = new ArrayList(setV.size());
-        ArrayList<NVertex> prev = new ArrayList(setV.size());
-
         // set of all vertices on mst
-        ArrayList<NVertex> finalV = new ArrayList();
+        ArrayList<NVertex> finalV = new ArrayList<NVertex>();
 
-        // heap containing all vertices, followed by initial source value
+        // new heap containing source, and initialization of source weight
+        Comparator<NVertex> comparator = new VertexComparator();
         PriorityQueue<NVertex> heap =
-                    new PriorityQueue(setV, new VertexComparator());
+                    new PriorityQueue<NVertex>(1, comparator);
         s.setRelativeWeight(0.0);
-        heap.add(s);
+
+        // add every element to the heap
+        Iterator<NVertex> setVIter = setV.iterator();
+        while (setVIter.hasNext()) {
+            NVertex w = setVIter.next();
+            heap.add(w);
+        }
 
         while (heap.size() > 0) {
             // get head of heap
             NVertex v = heap.poll();
             finalV.add(v);
-            // TODO: could this be more efficient?
             // iterate through every vortex in disjoint set V - S
-            Iterator<NVertex> iter = heap.iterator();
-            while (iter.hasNext()) {
-                NVertex current = iter.next().components;
+            Iterator<NVertex> heapIter = heap.iterator();
+            while (heapIter.hasNext()) {
+                NVertex w = heapIter.next();
 
                 // check if new weight from mst to current vertex is smaller
-                if (CompleteGraph.getWeight(v, current) < current.getRelativeWeight()) {
-                    // TODO: update values
+                double newWeight = CompleteGraph.getWeight(v, w);
+                if (newWeight < w.getRelativeWeight()) {
+                    heap.remove(w);
+                    w.setRelativeWeight(newWeight);
+                    w.setParent(v);
+                    heap.add(w);
                 }
             }
         }
     }
 }
-v := deletemin(h)
-        S := S∪ {v}
-        for (v,w) ∈ E and w ∈ V −S do
-        if dist[w] > length(v,w)
-        dist[w] := length(v,w), prev[w] := v, insert(w,dist[w],H)
-        fi
-        rof
-        end while end
