@@ -12,12 +12,12 @@ import java.util.List;
  *
  * @author boreas
  */
-public class BinHeap<Vertex> implements Heap<T>{
+public class BinHeap<T extends NVertex> implements Heap<T>{
     
     private class HeapObj {
-        public Vertex myVertex;
+        public T myVertex;
         public double myVal;
-        public HeapObj(Vertex v, double val){
+        public HeapObj(T v, double val){
             this.myVertex = v;
             this.myVal = val;
         }
@@ -78,9 +78,12 @@ public class BinHeap<Vertex> implements Heap<T>{
         //index of minimum child
         int minChild;
         
-        while(i < this.heapSize){
+        while(2*i < this.heapSize){
             //find minimum child
-            minChild = this.heapList.get(2*i).myVal > this.heapList.get(2*i+1).myVal ? 2*i+1 : 2*i;
+            if((2*i)+1 < this.heapSize)
+                minChild = this.heapList.get(2*i).myVal > this.heapList.get((2*i)+1).myVal ? 2*i+1 : 2*i;
+            else
+                minChild = 2*i;
             //if greater than child, switch
             if(this.heapList.get(i).myVal > this.heapList.get(minChild).myVal){
                 HeapObj temp = this.heapList.get(i);
@@ -101,7 +104,7 @@ public class BinHeap<Vertex> implements Heap<T>{
      * retrieve smallest element, call percolate subroutine to rebalance tree
      * @return 
      */
-    public Vertex deletemin(){
+    public T deletemin(){
         if(this.heapSize > 1){
             HeapObj min = this.heapList.get(1);
             this.heapSize--;
@@ -121,7 +124,7 @@ public class BinHeap<Vertex> implements Heap<T>{
      * @param vertex
      * @param val 
      */
-    public void insert(Vertex vertex, double val){
+    public void insert(T vertex, double val){
         HeapObj insertObj = new HeapObj(vertex,val); 
         this.heapList.add(insertObj);
         vertex.position = this.heapSize;
@@ -133,7 +136,7 @@ public class BinHeap<Vertex> implements Heap<T>{
      * @param vertex
      * @param new_val
      */
-    public void decreaseKey(Vertex vertex, double new_val){
+    public void decreaseKey(T vertex, double new_val){
         int pos = vertex.position;
         HeapObj obj = this.heapList.get(pos);
         if(obj.myVal > new_val){

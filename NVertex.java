@@ -9,7 +9,7 @@ import java.util.Collections;
  *
  */
 
-public class NVertex implements Vertex {
+public class NVertex{
 
     /* Immutable components of the vertex */
     public List<Double> components;
@@ -67,5 +67,13 @@ public class NVertex implements Vertex {
      */
     public void setParent(NVertex parent) {
         this.parent = parent;
+    }
+    
+    public void setPosition(int newPosition){
+        this.position = newPosition;
+    }
+    
+    public int getPosition(){
+        return this.position;
     }
 }
