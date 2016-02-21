@@ -12,12 +12,12 @@ import java.util.List;
  *
  * @author boreas
  */
-public class BinHeap<T> implements Heap<T>{
-
+public class BinHeap<Vertex> implements Heap<T>{
+    
     private class HeapObj {
-        public T myVertex;
+        public Vertex myVertex;
         public double myVal;
-        public HeapObj(T v, double val){
+        public HeapObj(Vertex v, double val){
             this.myVertex = v;
             this.myVal = val;
         }
@@ -56,7 +56,9 @@ public class BinHeap<T> implements Heap<T>{
             if(this.heapList.get(i).myVal < this.heapList.get(i/2).myVal){
                 HeapObj temp = this.heapList.get(i);
                 this.heapList.set(i,this.heapList.get(i/2));
+                this.heapList.get(i/2).myVertex.position = i;
                 this.heapList.set(i/2,temp);
+                temp.myVertex.position = i/2;
                 i /= 2;
             //we can stop percolating if we've found a larger element
             } else {
@@ -68,10 +70,10 @@ public class BinHeap<T> implements Heap<T>{
     /**
      * percolate a node down from the top of the heap
      */
-    private void percolateDown(){
+    private void percolateDown(int node){
         
         //keep track of which node we're at
-        int i = 1;
+        int i = node;
         
         //index of minimum child
         int minChild;
@@ -83,7 +85,9 @@ public class BinHeap<T> implements Heap<T>{
             if(this.heapList.get(i).myVal > this.heapList.get(minChild).myVal){
                 HeapObj temp = this.heapList.get(i);
                 this.heapList.set(i,this.heapList.get(minChild));
+                this.heapList.get(minChild).myVertex.position = i;
                 this.heapList.set(minChild,temp);
+                temp.myVertex.position = minChild;
                 i = minChild;
             //stop percolating down
             } else {
@@ -97,14 +101,14 @@ public class BinHeap<T> implements Heap<T>{
      * retrieve smallest element, call percolate subroutine to rebalance tree
      * @return 
      */
-    public T deletemin(){
+    public Vertex deletemin(){
         if(this.heapSize > 1){
             HeapObj min = this.heapList.get(1);
             this.heapSize--;
             if(this.heapSize > 1){
                 this.heapList.set(1,this.heapList.get(this.heapSize));
                 this.heapList.remove(this.heapSize);
-                percolateDown();
+                percolateDown(1);
             }
             return min.myVertex; 
         } else {
@@ -117,11 +121,25 @@ public class BinHeap<T> implements Heap<T>{
      * @param vertex
      * @param val 
      */
-    public void insert(T vertex, double val){
+    public void insert(Vertex vertex, double val){
         HeapObj insertObj = new HeapObj(vertex,val); 
         this.heapList.add(insertObj);
+        vertex.position = this.heapSize;
         this.heapSize++;
         percolateUp();
+    }
+    
+    /**
+     * @param vertex
+     * @param new_val
+     */
+    public void decreaseKey(Vertex vertex, double new_val){
+        int pos = vertex.position;
+        HeapObj obj = this.heapList.get(pos);
+        if(obj.myVal > new_val){
+            obj.myVal = new_val;
+            percolateDown(pos);
+        }
     }
     
     

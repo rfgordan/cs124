@@ -19,6 +19,9 @@ public class NVertex implements Vertex {
 
     /* Points to the MST parent vertex */
     public NVertex parent;
+    
+    /* Position in data structure. Used for quick heap lookup */
+    public int position;
 
     /**
      * Costructs a Vertex from a list of component values. Note that
@@ -55,14 +58,14 @@ public class NVertex implements Vertex {
     /**
      * Getter method for mst parent
      */
-    public NVertex getRelativeWeight() {
+    public NVertex getParent() {
         return this.parent;
     }
 
     /**
      * Setter method for mst parent
      */
-    public void setRelativeWeight(NVertex parent) {
+    public void setParent(NVertex parent) {
         this.parent = parent;
     }
 }
