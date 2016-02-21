@@ -11,10 +11,11 @@ import java.util.Collections;
 
 public class NVertex implements Vertex {
 
-    /**
-     * Immutable components of the vertex
-     */
+    /* Immutable components of the vertex */
     public List<Double> components;
+
+    /* Indicates current weight relative to source */
+    private double relativeWeight;
 
     /**
      * Costructs a Vertex from a list of component values. Note that
@@ -29,5 +30,19 @@ public class NVertex implements Vertex {
         }
         this.components = Collections.unmodifiableList(
             new ArrayList<Double>(components));
+    }
+
+    /**
+     * Getter method for relative weight to source
+     */
+    public double getRelativeWeight() {
+        return this.relativeWeight;
+    }
+
+    /**
+     * Setter method for relative weight to source
+     */
+    public void setRelativeWeight(double weight) {
+        this.relativeWeight = weight;
     }
 }

@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.PriorityQueue;
+import java.util.Comparator;
 
 /**
  *
@@ -19,25 +16,62 @@ public class RandMst {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    public static List<Vertex> makeGraph(int n, int dim){
-        List<Vertex> vlist = new ArrayList<Vertex>();
-        Random vertexGenerator = new Random();
-        
-        //create coordinates for each vertex
-        for(int i = 0; i < n; i++){
-            List<Double> coords = new ArrayList<Double>();
-            for(int j = 0; j < dim; j++){
-                coords.add(vertexGenerator.nextDouble());
-            }
-            Vertex newVertex = new NVertex(coords);
-            vlist.add(newVertex);
+
+    /**
+     * Prim's algorithm
+     * @param graph - graph to be processed
+     * @param initial - index referring to initial vertex in graph vertices
+     */
+    public static void prim(CompleteGraph graph, int initial) {
+        // get vertices list reference
+        ArrayList<NVertex> setV = graph.vertices;
+
+        // get reference to starting vertex
+        NVertex s = setV.get(initial);
+
+        // dist and prev arrays
+        ArrayList<Double> weight = new ArrayList(setV.size());
+        ArrayList<NVertex> prev = new ArrayList(setV.size());
+
+        // set of all vertices on mst
+        ArrayList<NVertex> finalV = new ArrayList();
+
+        // heap containing all vertices, followed by initial source value
+        PriorityQueue<NVertex> heap =
+                    new PriorityQueue(setV, new VertexComparator());
+        s.setRelativeWeight(0.0);
+        heap.add(s);
+
+        // initialize weight and prev arrays
+        for (int i = 0, size = setV.size(); i < size; i++) {
+            // setting weight to a value larger than the max edge weight
+            weight.set(i, 2);
+            prev.set(i, null);
         }
-        
-        return vlist;
+        weight.set(initial) = 0.0;
+
+        while (heap.size() > 0) {
+            // get head of heap
+            NVertex v = new NVertex(heap.poll().components);
+            finalV.add(v);
+            // TODO: This can be made more efficient
+            // iterate through every vortex in disjoint set V - S
+            Iterator<NVertex> iter = heap.iterator();
+            while (iter.hasNext()) {
+                NVertex current = new NVertex(iter.next().components);
+                // Not quite how this comparison works
+                if (current != v) {
+                    continue;
+                }
+                // temp variable missIndex
+                if (weight.get(missIndex) > ComplegeGraph.getWeight(v, current)) {
+                    weight.set(missIndex) = ComplegeGraph.getWeight(v, current);
+                    prev.set(missIndex) = v;
+                    v.setRelativeWeight(weight.get(missIndex));
+                    heap.add(v);
+                }
+            }
+        }
     }
-    public static void prim(List<Vertex>){
-        
-    }
-    
 }
 

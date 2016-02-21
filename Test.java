@@ -34,7 +34,7 @@ public class Test {
         vertices.add(v1);
         vertices.add(v2);
 
-        /* REMOVE COMMENT TO ENABLE GRAPH GENERATOR TEST
+       /* REMOVE COMMENT TO ENABLE GRAPH GENERATOR TEST
         CompleteGraph g1;
         g1 = CompleteGraph.makeGraph(15, 3);
         g1.printGraph();
