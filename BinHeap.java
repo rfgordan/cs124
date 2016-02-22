@@ -110,6 +110,7 @@ public class BinHeap<T extends NVertex> implements Heap<T>{
             this.heapSize--;
             if(this.heapSize > 1){
                 this.heapList.set(1,this.heapList.get(this.heapSize));
+                this.heapList.get(1).myVertex.position = 1;
                 this.heapList.remove(this.heapSize);
                 percolateDown(1);
             }

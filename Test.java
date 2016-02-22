@@ -46,6 +46,7 @@ public class Test {
         
         
         //test heap
+        /*
         BinHeap<NVertex> H;
         H = new BinHeap<NVertex>();
         for (int i = 0; i < 10; i++){
@@ -59,6 +60,7 @@ public class Test {
         {
             ps.printf("Coordinate: %d \n", H.deletemin().components.get(0).intValue());
         }
+        */
 
     }
 
