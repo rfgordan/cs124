@@ -145,5 +145,7 @@ public class BinHeap<T extends NVertex> implements Heap<T>{
         }
     }
     
-    
+    public int size() {
+        return this.heapSize;
+    }
 }

@@ -1,15 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.PriorityQueue;
 import java.util.Comparator;
-import java.util.Iterator;
 
 /**
  *
  * @author boreas
  */
 public class RandMst {
+
+    /**
+     * index for iterator
+     */
+    private int iterator;
 
     /**
      * @param args the command line arguments
@@ -41,33 +44,35 @@ public class RandMst {
 
         // new heap containing source, and initialization of source weight
         Comparator<NVertex> comparator = new VertexComparator();
-        PriorityQueue<NVertex> heap =
-                    new PriorityQueue<NVertex>(1, comparator);
+        BinHeap<NVertex> heap = new BinHeap<NVertex>();
         s.setRelativeWeight(0.0);
 
         // add every element to the heap
-        Iterator<NVertex> setVIter = setV.iterator();
-        while (setVIter.hasNext()) {
-            NVertex w = setVIter.next();
-            heap.add(w);
+        for (int i = 0, size = setV.size(); i < size; i++) {
+            NVertex w = setV.get(i);
+            w.setID(i);
+            heap.insert(w, w.getRelativeWeight());
         }
 
         while (heap.size() > 0) {
             // get head of heap
-            NVertex v = heap.poll();
+            NVertex v = heap.deletemin();
+            int vID = v.getID();
+            setV.set(vID, null);
             finalV.add(v);
             // iterate through every vortex in disjoint set V - S
-            Iterator<NVertex> heapIter = heap.iterator();
-            while (heapIter.hasNext()) {
-                NVertex w = heapIter.next();
+            for (int i = 0, size = setV.size(); i < size; i++) {
+                NVertex w = setV.get(i);
+                if (w == null) {
+                    continue;
+                }
 
                 // check if new weight from mst to current vertex is smaller
                 double newWeight = CompleteGraph.getWeight(v, w);
                 if (newWeight < w.getRelativeWeight()) {
-                    heap.remove(w);
                     w.setRelativeWeight(newWeight);
                     w.setParent(v);
-                    heap.add(w);
+                    heap.decreaseKey(w, newWeight);
                 }
             }
         }
