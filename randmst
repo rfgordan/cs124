@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# script to format input for RandMst
+
+echo "Running RandMst..."
+if [ $# != 4 ]; then
+    echo "format: randmst flag numpoints numtrials dimension"; exit
+    fi
+else
+    java RandMst $1 $2 $3 $4
+    fi
