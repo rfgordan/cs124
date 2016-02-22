@@ -154,12 +154,10 @@ public class RandMst {
 
                     // check if new weight from mst to current vertex is smaller
                     double newWeight = CompleteGraph.getWeight(v, w);
-                    //ps.printf("New WEight: %f", newWeight);
                     if (newWeight < w.getRelativeWeight()) {
                         w.setRelativeWeight(newWeight);
                         w.setParent(v);
                         heap.decreaseKey(w, newWeight);
-                        //ps.printf("x-axis:%f y-axis:%f\n", w.components.get(0), w.components.get(1));
                     }
                 } catch (NullPointerException e) {
                     // vertex is not in V - S
