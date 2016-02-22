@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Comparator;
-import java.util.Iterator;
+import java.lang.Integer;
 import java.io.PrintStream;
 
 /**
@@ -12,20 +12,36 @@ import java.io.PrintStream;
 public class RandMst {
 
     /**
-     * index for iterator
-     */
-    private int iterator;
-
-    /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Generate random graph
-        CompleteGraph g1;
-        g1 = CompleteGraph.makeGraph(15, 1);
-        //g1.printGraph();
 
-        prim(g1, 1);
+        // printing
+        PrintStream ps = new PrintStream(System.out);
+
+        // parsing inputs
+        int numpoints = Integer.parseInt(args[1]);
+        int numtrials = Integer.parseInt(args[2]);
+        int dimension = Integer.parseInt(args[3]);
+
+        // input safety
+        
+
+
+        // run tests
+        double sum = 0;
+        for (int i = 0; i < numtrials; i++) {
+            // Generate random graph
+            CompleteGraph randomGraph;
+            randomGraph = CompleteGraph.makeGraph(numpoints, dimension);
+            double subSum = prim(randomGraph, 1);
+            //ps.printf("Trial %d: %f\n", i, subSum);
+            sum += subSum;
+        }
+        double average = sum / numtrials;
+
+        // results
+        ps.printf("%f %d %d %d\n", average, numpoints, numtrials, dimension);
     }
 
     /**
@@ -34,10 +50,7 @@ public class RandMst {
      * @param graph   - graph to be processed
      * @param initial - index referring to initial vertex in graph vertices
      */
-    public static void prim(CompleteGraph graph, int initial) {
-
-        // debugging
-        PrintStream ps = new PrintStream(System.out);
+    public static double prim(CompleteGraph graph, int initial) {
 
         // get vertices list reference
         ArrayList<NVertex> setV = graph.vertices;
@@ -91,14 +104,17 @@ public class RandMst {
             }
         }
 
-        ps.printf("Results:\n");
         double sum = 0;
         for (int i = 0, size = finalV.size(); i < size; i++) {
+<<<<<<< HEAD
             //ps.printf("x-axis:%f y-axis:%f\n", finalV.get(i).components.get(0), finalV.get(i).components.get(1));
             sum += finalV.get(i).getRelativeWeight();
             //ps.printf("Weight element %d: %f\n", i, finalV.get(i).getRelativeWeight());
+=======
+            sum += finalV.get(i).getRelativeWeight();
+>>>>>>> 0a95f6ab0c2b4785a3a5e98c63a5e65843a583b6
         }
 
-        ps.printf("Final Weight: %f\n", sum);
+        return sum;
     }
 }
