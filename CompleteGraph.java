@@ -38,8 +38,8 @@ public class CompleteGraph implements Graph {
         double preSum = 0;
         do {
             dimension -= 1;
-            eVector = va.components.get(dimension).intValue() -
-                            vb.components.get(dimension).intValue();
+            eVector = va.components.get(dimension).doubleValue() -
+                            vb.components.get(dimension).doubleValue();
             eVector = Math.pow(eVector, 2);
             preSum += eVector;
         } while (dimension > 0);
