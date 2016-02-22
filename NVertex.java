@@ -9,7 +9,7 @@ import java.util.Collections;
  *
  */
 
-public class NVertex implements Vertex {
+public class NVertex{
 
     /* Immutable components of the vertex */
     public List<Double> components;
@@ -19,6 +19,9 @@ public class NVertex implements Vertex {
 
     /* Points to the MST parent vertex */
     public NVertex parent;
+    
+    /* Position in data structure. Used for quick heap lookup */
+    public int position;
 
     /**
      * Costructs a Vertex from a list of component values. Note that
@@ -64,5 +67,13 @@ public class NVertex implements Vertex {
      */
     public void setParent(NVertex parent) {
         this.parent = parent;
+    }
+    
+    public void setPosition(int newPosition){
+        this.position = newPosition;
+    }
+    
+    public int getPosition(){
+        return this.position;
     }
 }

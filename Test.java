@@ -27,11 +27,11 @@ public class Test {
         listB = new ArrayList<Double>(2);
         listB.add(-2.0);
         listB.add(0.0);
-        Vertex v1 = new NVertex(listA);
-        Vertex v2 = new NVertex(listB);
+        NVertex v1 = new NVertex(listA);
+        NVertex v2 = new NVertex(listB);
 
-        ArrayList<Vertex> vertices;
-        vertices = new ArrayList<Vertex>(2);
+        ArrayList<NVertex> vertices;
+        vertices = new ArrayList<NVertex>(2);
         vertices.add(v1);
         vertices.add(v2);
         */
@@ -44,16 +44,21 @@ public class Test {
 
 
         
-        /*
+        
         //test heap
-        Heap H = new BinHeap<Vertex>();
-        H.insert(v1,10);
-        H.insert(v2,20);
+        BinHeap<NVertex> H;
+        H = new BinHeap<NVertex>();
+        for (int i = 0; i < 10; i++){
+            H.insert(v1,100-i);
+            H.insert(v2,200-i);
+        }
         if(H.deletemin() != v1){
             ps.printf("Oops! \n");
         }
-        ps.printf("Coordinate: %d", H.deletemin().components.get(0).intValue());
-        */
+        for(int i = 0; i < 15; i++)
+        {
+            ps.printf("Coordinate: %d \n", H.deletemin().components.get(0).intValue());
+        }
 
     }
 
