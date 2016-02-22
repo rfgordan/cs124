@@ -1,10 +1,12 @@
 #!/bin/bash
 #
 # script to format input for RandMst
+# 
+# note that the user must compile with make before running this script
 
 echo "Running RandMst..."
 if [ $# != 4 ]; then
-    echo "format: randmst flag numpoints numtrials dimension"
+    echo "usage: randmst flag numpoints numtrials dimension"
 else
     java RandMst $1 $2 $3 $4
 fi
