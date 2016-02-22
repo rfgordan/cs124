@@ -34,9 +34,9 @@ public class NVertex{
         // List must contain a positive amount of numbers
         if (components == null) {
             throw new NullPointerException();
-        } else if (components.size() < 1) {
+        } /*else if (components.size() < 1) {
             throw new IllegalArgumentException();
-        }
+        }*/
         this.components = Collections.unmodifiableList(
             new ArrayList<Double>(components));
         this.parent = null;

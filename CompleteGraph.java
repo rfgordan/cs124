@@ -74,7 +74,10 @@ public class CompleteGraph implements Graph {
     public static CompleteGraph makeGraph(int n, int dim){
         List<NVertex> vlist = new ArrayList<NVertex>();
         Random vertexGenerator = new Random();
-
+        
+        //if dim == 1, set to 0 for special implementation
+        dim = (dim == 1) ? 0 : dim;
+        
         //create coordinates for each vertex
         for (int i = 0; i < n; i++){
             List<Double> coords = new ArrayList<Double>();

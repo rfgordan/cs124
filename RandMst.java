@@ -22,8 +22,8 @@ public class RandMst {
     public static void main(String[] args) {
         // Generate random graph
         CompleteGraph g1;
-        g1 = CompleteGraph.makeGraph(15, 2);
-        g1.printGraph();
+        g1 = CompleteGraph.makeGraph(15, 1);
+        //g1.printGraph();
 
         prim(g1, 1);
     }
@@ -94,9 +94,9 @@ public class RandMst {
         ps.printf("Results:\n");
         double sum = 0;
         for (int i = 0, size = finalV.size(); i < size; i++) {
-            ps.printf("x-axis:%f y-axis:%f\n", finalV.get(i).components.get(0), finalV.get(i).components.get(1));
+            //ps.printf("x-axis:%f y-axis:%f\n", finalV.get(i).components.get(0), finalV.get(i).components.get(1));
             sum += finalV.get(i).getRelativeWeight();
-            ps.printf("Weight element %d: %f\n", i, finalV.get(i).getRelativeWeight());
+            //ps.printf("Weight element %d: %f\n", i, finalV.get(i).getRelativeWeight());
         }
 
         ps.printf("Final Weight: %f\n", sum);
