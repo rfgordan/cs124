@@ -41,7 +41,7 @@ public class NVertex{
             new ArrayList<Double>(components));
         this.parent = null;
         // relative weight value over max of 1
-        this.relativeWeight = 2.0;
+        this.relativeWeight = 100.0;
     }
 
     /**
