@@ -15,7 +15,12 @@ public class RandMst {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        // Generate random graph
+        CompleteGraph g1;
+        g1 = CompleteGraph.makeGraph(15, 2);
+        g1.printGraph();
+
+        prim(g1, 1);
     }
 
     /**
