@@ -10,5 +10,4 @@ import java.util.Collections;
  */
 
 public interface Vertex {
-    public int position;
 }

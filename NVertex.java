@@ -18,10 +18,13 @@ public class NVertex{
     private double relativeWeight;
 
     /* Points to the MST parent vertex */
-    public NVertex parent;
+    private NVertex parent;
     
     /* Position in data structure. Used for quick heap lookup */
     public int position;
+
+    /* Unique id */
+    private int id;
 
     /**
      * Costructs a Vertex from a list of component values. Note that
@@ -75,5 +78,13 @@ public class NVertex{
     
     public int getPosition(){
         return this.position;
+    }
+
+    public void setID(int id){
+        this.id = id;
+    }
+
+    public int getID(){
+        return this.id;
     }
 }
