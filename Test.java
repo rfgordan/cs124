@@ -181,6 +181,7 @@ public class Test {
         v1.position = 3;
         heap.decreaseKey(v1, 1.0);
 
+        deleted = heap.deletemin();
         // result should be 1
         ps.printf("Second delete: %d. Expected: 1\n", deleted.getID());
 
