@@ -20,19 +20,32 @@ public class RandMst {
         PrintStream ps = new PrintStream(System.out);
 
         // parsing inputs
+        int testing = Integer.parseInt(args[0]);
         int numpoints = Integer.parseInt(args[1]);
         int numtrials = Integer.parseInt(args[2]);
         int dimension = Integer.parseInt(args[3]);
 
-        // run tests
         double sum = 0;
-        for (int i = 0; i < numtrials; i++) {
-            // Generate random graph
-            CompleteGraph randomGraph;
-            randomGraph = CompleteGraph.makeGraph(numpoints, dimension);
-            double subSum = prim(randomGraph, 1);
-            sum += subSum;
+
+        // run tests
+        if (testing == 1) {
+            CompleteGraph simpleGraph = Test.simpleTest();
+            sum = prim(simpleGraph, 1);
+            numtrials = 1;
+            numpoints = 10;
+            dimension = 2;
+        } else if (testing == 2) {
+            Test.heapTest();
+        } else {
+            for (int i = 0; i < numtrials; i++) {
+                // Generate random graph
+                CompleteGraph randomGraph;
+                randomGraph = CompleteGraph.makeGraph(numpoints, dimension);
+                double subSum = prim(randomGraph, 1);
+                sum += subSum;
+            }
         }
+
         double average = sum / numtrials;
 
         // results
