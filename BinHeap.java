@@ -46,10 +46,10 @@ public class BinHeap<T extends NVertex> implements Heap<T>{
     /**
      * percolate an added node up from the bottom of the heap
      */
-    private void percolateUp(){
+    private void percolateUp(int node){
         
         //keep track of which node we're at
-        int i = this.heapSize - 1;
+        int i = node;
         
         while(i / 2 > 0){
             //if necessary, switch element with parent
@@ -130,7 +130,7 @@ public class BinHeap<T extends NVertex> implements Heap<T>{
         this.heapList.add(insertObj);
         vertex.position = this.heapSize;
         this.heapSize++;
-        percolateUp();
+        percolateUp(this.heapSize-1);
     }
     
     /**
@@ -142,8 +142,9 @@ public class BinHeap<T extends NVertex> implements Heap<T>{
         HeapObj obj = this.heapList.get(pos);
         if(obj.myVal > new_val){
             obj.myVal = new_val;
-            percolateDown(pos);
+            percolateUp(pos);
         }
+        
     }
     
     public int size() {
