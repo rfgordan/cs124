@@ -3,15 +3,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /** 
- * Vertex.java
+ * NVertex.java
  *
  * A n-th dimensional vertex.
- *
  */
 
 public class NVertex{
 
-    /* Immutable components of the vertex */
+    /* Immutable components of the vertex. This list is public. */
     public List<Double> components;
 
     /* Indicates current weight relative to source */
@@ -21,14 +20,14 @@ public class NVertex{
     private NVertex parent;
     
     /* Position in data structure. Used for quick heap lookup */
-    public int position;
+    private int position;
 
-    /* Unique id */
+    /* Unique id, used for relationship with heap */
     private int id;
 
     /**
      * Costructs a Vertex from a list of component values. Note that
-     * the resulting list is immutable.
+     * the resulting component list is immutable.
      */
     public NVertex(List<Double> components) {
         // List must contain a positive amount of numbers
@@ -71,20 +70,32 @@ public class NVertex{
     public void setParent(NVertex parent) {
         this.parent = parent;
     }
-    
-    public void setPosition(int newPosition){
-        this.position = newPosition;
-    }
-    
+
+    /**
+     * Getter method for vertex position in heap implementation
+     */
     public int getPosition(){
         return this.position;
     }
 
-    public void setID(int id){
-        this.id = id;
+    /**
+     * Setter method for vertex position in heap implementation
+     */
+    public void setPosition(int newPosition){
+        this.position = newPosition;
     }
 
-    public int getID(){
+    /**
+     * Getter method for vertex ID
+     */
+    public int getID() {
         return this.id;
+    }
+
+    /**
+     * Setter method for vertex ID
+     */
+    public void setID(int id){
+        this.id = id;
     }
 }

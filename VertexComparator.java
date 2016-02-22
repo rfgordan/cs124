@@ -1,5 +1,12 @@
 import java.util.Comparator;
 
+/**
+ * VertexComparator.java
+ *
+ * Comparator class that enables comparisons between NVertex objects.
+ * Used for iterators in algorithm.
+ */
+
 public class VertexComparator implements Comparator<NVertex> {
 
     @Override
