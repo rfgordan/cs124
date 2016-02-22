@@ -24,10 +24,6 @@ public class RandMst {
         int numtrials = Integer.parseInt(args[2]);
         int dimension = Integer.parseInt(args[3]);
 
-        // input safety
-
-
-
         // run tests
         double sum = 0;
         for (int i = 0; i < numtrials; i++) {
@@ -35,7 +31,6 @@ public class RandMst {
             CompleteGraph randomGraph;
             randomGraph = CompleteGraph.makeGraph(numpoints, dimension);
             double subSum = prim(randomGraph, 1);
-            //ps.printf("Trial %d: %f\n", i, subSum);
             sum += subSum;
         }
         double average = sum / numtrials;
@@ -106,13 +101,7 @@ public class RandMst {
 
         double sum = 0;
         for (int i = 0, size = finalV.size(); i < size; i++) {
-<<<<<<< HEAD
-            //ps.printf("x-axis:%f y-axis:%f\n", finalV.get(i).components.get(0), finalV.get(i).components.get(1));
             sum += finalV.get(i).getRelativeWeight();
-            //ps.printf("Weight element %d: %f\n", i, finalV.get(i).getRelativeWeight());
-=======
-            sum += finalV.get(i).getRelativeWeight();
->>>>>>> 0a95f6ab0c2b4785a3a5e98c63a5e65843a583b6
         }
 
         return sum;
