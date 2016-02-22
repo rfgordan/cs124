@@ -64,4 +64,49 @@ public class Test {
 
     }
 
+    public static void simpleTest() {
+        PrintStream ps = new PrintStream(System.out);
+
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(1.0);
+        listA.add(1.0);
+        ArrayList<Double> listB;
+        listB = new ArrayList<Double>(2);
+        listB.add(3.0);
+        listB.add(1.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(3.0);
+        listA.add(3.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(4.0);
+        listA.add(3.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(0.0);
+        listA.add(2.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(0.0);
+        listA.add(2.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(0.0);
+        listA.add(2.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(0.0);
+        listA.add(2.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(0.0);
+        listA.add(2.0);
+        ArrayList<Double> list1;
+        listA = new ArrayList<Double>(2);
+        listA.add(0.0);
+        listA.add(2.0);
+    }
+
 }

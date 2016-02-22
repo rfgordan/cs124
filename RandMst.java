@@ -24,7 +24,7 @@ public class RandMst {
         int dimension = Integer.parseInt(args[3]);
 
         // input safety
-        
+
 
         // run tests
         double sum = 0;
