@@ -32,20 +32,26 @@ public class CompleteGraph implements Graph {
         if (dimension != vb.components.size()) {
             throw new IllegalArgumentException();
         }
+        
+        if (dimension == 0) {
+            Random r = new Random();
+            return r.nextDouble();
+        } else {
+        
+            // find distance
+            double eVector;
+            double preSum = 0;
+            do {
+                dimension -= 1;
+                eVector = va.components.get(dimension).intValue() -
+                    vb.components.get(dimension).intValue();
+                eVector = Math.pow(eVector, 2);
+                preSum += eVector;
+            } while (dimension > 0);
+            double sum = Math.sqrt(preSum);
 
-        // find distance
-        double eVector;
-        double preSum = 0;
-        do {
-            dimension -= 1;
-            eVector = va.components.get(dimension).intValue() -
-                            vb.components.get(dimension).intValue();
-            eVector = Math.pow(eVector, 2);
-            preSum += eVector;
-        } while (dimension > 0);
-        double sum = Math.sqrt(preSum);
-
-        return sum;
+            return sum;
+        }
     }
 
     /**
