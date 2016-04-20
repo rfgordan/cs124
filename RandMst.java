@@ -49,7 +49,8 @@ public class RandMst {
         double average = sum / numtrials;
 
         // results
-        ps.printf("%f %d %d %d\n", average, numpoints, numtrials, dimension);
+        //ps.printf("%f %d %d %d\n", average, numpoints, numtrials, dimension);
+        ps.printf("%f",average);
     }
 
     /**
