@@ -8,50 +8,20 @@ import java.io.PrintStream;
 import java.util.Random;
 
 /**
- * GenGraph.java
+ * CompleteGraph.java
  *
- * Interface for a structure a graph of edges and vertices.
- *
+ * Representation of a complete, undirected graph on n vertices.
+ * Provides with various methods to operate on graphs and their components,
+ * as well as a printing debugger method.
  */
 
-public class CompleteGraph implements Graph {
+public class CompleteGraph {
 
-    /* Contains list of vertices */
+    /* Contains list of vertices. This instance variable is public. */
     public ArrayList<NVertex> vertices;
 
-    /* Mantains dimension of the graph */
+    /* Mantains dimension of the graph. This instance variable is public. */
     public int dimension;
-
-    /**
-     * Find weight (distance) of an edge between vertices A and B
-     */
-    public static double getWeight(NVertex va, NVertex vb) {
-        // get dimensions
-        int dimension = va.components.size();
-        /* make sure dimensions match */
-        if (dimension != vb.components.size()) {
-            throw new IllegalArgumentException();
-        }
-        
-        if (dimension == 0) {
-            Random r = new Random();
-            return r.nextDouble();
-        } else {
-        
-            // find distance
-            double eVector;
-            double preSum = 0;
-            do {
-                dimension -= 1;
-                eVector = va.components.get(dimension).doubleValue() -
-                    vb.components.get(dimension).doubleValue();
-                eVector = Math.pow(eVector, 2);
-                preSum += eVector;
-            } while (dimension > 0);
-            double sum = Math.sqrt(preSum);
-            return sum;
-        }
-    }
 
     /**
      * Construct a Graph from a list of vertices.
@@ -66,35 +36,7 @@ public class CompleteGraph implements Graph {
     }
 
     /**
-     * Class method to create a CompleteGraph of n vertices and dim dimensions
-     * @param n
-     * @param dim
-     * @return
-     */
-    public static CompleteGraph makeGraph(int n, int dim){
-        List<NVertex> vlist = new ArrayList<NVertex>();
-        Random vertexGenerator = new Random();
-        
-        //if dim == 1, set to 0 for special implementation
-        dim = (dim == 1) ? 0 : dim;
-        
-        //create coordinates for each vertex
-        for (int i = 0; i < n; i++){
-            List<Double> coords = new ArrayList<Double>();
-            for (int j = 0; j < dim; j++){
-                coords.add(vertexGenerator.nextDouble());
-            }
-            NVertex newVertex = new NVertex(coords);
-            vlist.add(newVertex);
-        }
-
-        CompleteGraph graph = new CompleteGraph(vlist, dim);
-
-        return graph;
-    }
-
-    /**
-     * Prints a list of all the vertices in current graph
+     * Prints a list of all the vertices in current graph.
      */
     public void printGraph() {
         PrintStream ps = new PrintStream(System.out);
@@ -112,5 +54,64 @@ public class CompleteGraph implements Graph {
             ps.printf("%f)\n", comp.get(this.dimension - 1));
         }
         ps.printf("All vertices printed\n");
+    }
+
+    /**
+     * Class method that finds weight (distance) of an edge
+     * between vertices A and B.
+     */
+    public static double getWeight(NVertex va, NVertex vb) {
+        // get dimensions and ensure the vertices are compatible
+        int dimension = va.components.size();
+        if (dimension != vb.components.size()) {
+            // vertices are of different number of components
+            throw new IllegalArgumentException();
+        }
+
+        // scenario where edge weights are assigned uniformly at random
+        if (dimension == 0) {
+            Random r = new Random();
+            return r.nextDouble();
+        } else {
+            // for all other scenarios, calculate actual Euclidean distance
+            double eVector;
+            double preSum = 0;
+            do {
+                dimension -= 1;
+                eVector = va.components.get(dimension).doubleValue() -
+                        vb.components.get(dimension).doubleValue();
+                eVector = Math.pow(eVector, 2);
+                preSum += eVector;
+            } while (dimension > 0);
+            double sum = Math.sqrt(preSum);
+
+            return sum;
+        }
+    }
+
+    /**
+     * Class method to create a uniformly random CompleteGraph
+     * of n vertices and dim dimensions
+     */
+    public static CompleteGraph makeGraph(int n, int dim) {
+        List<NVertex> vlist = new ArrayList<NVertex>();
+        Random vertexGenerator = new Random();
+
+        // assign 1-dimension to the random edge-weight scenario
+        dim = (dim == 1) ? 0 : dim;
+
+        //create coordinates for each vertex
+        for (int i = 0; i < n; i++) {
+            List<Double> coords = new ArrayList<Double>();
+            for (int j = 0; j < dim; j++) {
+                coords.add(vertexGenerator.nextDouble());
+            }
+            NVertex newVertex = new NVertex(coords);
+            vlist.add(newVertex);
+        }
+
+        CompleteGraph graph = new CompleteGraph(vlist, dim);
+
+        return graph;
     }
 }
